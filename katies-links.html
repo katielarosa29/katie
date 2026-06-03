@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katie's Links</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf8f4;
+    --surface: #ffffff;
+    --text: #1c1a17;
+    --muted: #7a7670;
+    --border: #e4e0d8;
+    --accent: #b85c38;
+    --accent-light: #f5ede8;
+    --tag-bg: #f0ede6;
+    --tag-text: #5c5850;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 3rem 1.5rem 6rem;
+  }
+
+  header {
+    max-width: 680px;
+    margin: 0 auto 3rem;
+    border-bottom: 1.5px solid var(--border);
+    padding-bottom: 2rem;
+  }
+
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  header p {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .controls {
+    max-width: 680px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .controls input {
+    flex: 1;
+    min-width: 200px;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .controls input:focus { border-color: var(--accent); }
+  .controls input::placeholder { color: var(--muted); }
+
+  .filter-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .filter-tag.active, .filter-tag:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .section {
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .section-title {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    padding-left: 2px;
+  }
+
+  .link-grid {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .link-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+
+  .link-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(184,92,56,0.08);
+  }
+
+  .link-card .icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .link-card .info { flex: 1; min-width: 0; }
+
+  .link-card .name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .link-card .desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .link-card .tag {
+    font-size: 0.72rem;
+    padding: 2px 9px;
+    border-radius: 12px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .link-card .delete-btn {
+    opacity: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 4px;
+    transition: opacity 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .link-card:hover .delete-btn { opacity: 1; }
+  .link-card .delete-btn:hover { color: #e24b4a; }
+
+
+  .empty-state {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .empty-state .big { font-size: 2rem; margin-bottom: 0.5rem; }
+
+  #results-count {
+    font-size: 0.8rem;
+    color: var(--muted);
+    max-width: 680px;
+    margin: 0 auto 1rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Katie's <em>Links</em></h1>
+  <p>All your Claude-made HTML projects, organized.</p>
+</header>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="Search links…" oninput="render()" />
+  <div class="filter-tags" id="filter-tags"></div>
+</div>
+
+<div id="results-count"></div>
+<div id="links-container"></div>
+
+
+<script>
+const STORAGE_KEY = 'katies_links_v2';
+
+const DEFAULT_LINKS = [
+  { id: 1, name: "Portfolio", url: "https://www.katielarosa.com/", desc: "katielarosa.com", tag: "portfolio", icon: "✦" },
+];
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : DEFAULT_LINKS;
+  } catch { return DEFAULT_LINKS; }
+}
+
+function save(links) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+}
+
+function allTags(links) {
+  const tags = [...new Set(links.map(l => l.tag).filter(Boolean))].sort();
+  return tags;
+}
+
+let activeTag = null;
+
+function render() {
+  const links = load();
+  const q = document.getElementById('search').value.toLowerCase();
+
+  const tags = allTags(links);
+  const tagContainer = document.getElementById('filter-tags');
+  tagContainer.innerHTML = '';
+  if (tags.length > 0) {
+    const allBtn = document.createElement('button');
+    allBtn.className = 'filter-tag' + (activeTag === null ? ' active' : '');
+    allBtn.textContent = 'All';
+    allBtn.onclick = () => { activeTag = null; render(); };
+    tagContainer.appendChild(allBtn);
+    tags.forEach(t => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-tag' + (activeTag === t ? ' active' : '');
+      btn.textContent = t;
+      btn.onclick = () => { activeTag = t; render(); };
+      tagContainer.appendChild(btn);
+    });
+  }
+
+  let filtered = links;
+  if (activeTag) filtered = filtered.filter(l => l.tag === activeTag);
+  if (q) filtered = filtered.filter(l =>
+    l.name.toLowerCase().includes(q) ||
+    (l.desc || '').toLowerCase().includes(q) ||
+    (l.tag || '').toLowerCase().includes(q)
+  );
+
+  const countEl = document.getElementById('results-count');
+  countEl.textContent = filtered.length === links.length
+    ? `${links.length} link${links.length !== 1 ? 's' : ''}`
+    : `${filtered.length} of ${links.length} links`;
+
+  const grouped = {};
+  filtered.forEach(l => {
+    const g = l.tag || 'uncategorized';
+    if (!grouped[g]) grouped[g] = [];
+    grouped[g].push(l);
+  });
+
+  const container = document.getElementById('links-container');
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div class="empty-state" style="max-width:680px;margin:0 auto;"><div class="big">🔍</div>No links found. Add one below!</div>`;
+    return;
+  }
+
+  container.innerHTML = '';
+  Object.keys(grouped).sort().forEach(group => {
+    const section = document.createElement('div');
+    section.className = 'section';
+    section.innerHTML = `<div class="section-title">${group}</div><div class="link-grid" id="grid-${group}"></div>`;
+    container.appendChild(section);
+
+    const grid = section.querySelector('.link-grid');
+    grouped[group].forEach(link => {
+      const card = document.createElement('div');
+      card.className = 'link-card';
+      card.innerHTML = `
+        <div class="icon">${link.icon || '🔗'}</div>
+        <div class="info">
+          <div class="name">${link.name}</div>
+          ${link.desc ? `<div class="desc">${link.desc}</div>` : ''}
+        </div>
+        <span class="tag">${link.tag || ''}</span>
+        <button class="delete-btn" title="Remove" onclick="removeLink(event, ${link.id})">×</button>
+      `;
+      if (link.url && link.url !== '#') {
+        card.addEventListener('click', (e) => {
+          if (e.target.classList.contains('delete-btn')) return;
+          window.open(link.url, '_blank');
+        });
+      }
+      grid.appendChild(card);
+    });
+  });
+}
+
+function removeLink(e, id) {
+  e.stopPropagation();
+  const links = load().filter(l => l.id !== id);
+  save(links);
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
