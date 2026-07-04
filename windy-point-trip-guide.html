@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windy Point Camping Trip — Family Prep Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #F5F1E8;
+    --parchment-card: #FBF9F3;
+    --ink: #2E2A22;
+    --ink-soft: #5B5648;
+    --clay: #B5713F;
+    --clay-soft: #E8D5C0;
+    --river: #4A7A8C;
+    --river-soft: #DCE9EC;
+    --sage: #6B7F5E;
+    --sage-soft: #E1E8DA;
+    --line: #DDD5C3;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'Geist', sans-serif;
+    line-height: 1.6;
+    padding-bottom: 60px;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  header.hero {
+    padding: 48px 24px 32px;
+    text-align: center;
+    border-bottom: 2px solid var(--line);
+    background: linear-gradient(180deg, #F9F5EC 0%, var(--parchment) 100%);
+  }
+
+  header.hero .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--clay);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  header.hero h1 {
+    font-size: 40px;
+    font-style: italic;
+    line-height: 1.15;
+  }
+
+  header.hero .subtitle {
+    margin-top: 10px;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  .trip-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .meta-chip {
+    background: var(--parchment-card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+
+  .meta-chip strong { color: var(--ink); }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .alert-box {
+    margin: 28px auto 0;
+    max-width: 840px;
+    background: #FBEFE6;
+    border: 1px solid var(--clay-soft);
+    border-left: 5px solid var(--clay);
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+
+  .alert-box .alert-title {
+    font-weight: 700;
+    color: var(--clay);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+
+  .alert-box p { margin: 4px 0; font-size: 15px; color: var(--ink-soft); }
+
+  nav.tabs {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--parchment);
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 18px 20px 10px;
+    max-width: 880px;
+    margin: 0 auto;
+    border-bottom: 2px solid var(--line);
+  }
+
+  nav.tabs button {
+    font-family: 'Geist', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    background: var(--parchment-card);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    padding: 9px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  nav.tabs button:hover { border-color: var(--clay); color: var(--ink); }
+
+  nav.tabs button.active {
+    background: var(--ink);
+    color: var(--parchment-card);
+    border-color: var(--ink);
+  }
+
+  .panel { display: none; padding-top: 28px; }
+  .panel.active { display: block; }
+
+  .card {
+    background: var(--parchment-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-bottom: 20px;
+  }
+
+  .card h2 {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .card .card-sub {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    margin-bottom: 16px;
+  }
+
+  .family-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 18px;
+  }
+
+  @media (max-width: 620px) {
+    .family-split { grid-template-columns: 1fr; }
+  }
+
+  .family-block {
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+
+  .family-block.us { background: var(--river-soft); }
+  .family-block.sister { background: var(--sage-soft); }
+
+  .family-block h3 {
+    font-size: 16px;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .family-block ul { margin: 0; padding-left: 18px; font-size: 14.5px; }
+
+  .water-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14.5px;
+  }
+
+  .water-table th, .water-table td {
+    text-align: left;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .water-table th { color: var(--ink-soft); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .water-table tr:last-child td { border-bottom: none; font-weight: 700; }
+
+  .water-total {
+    display: inline-block;
+    margin-top: 16px;
+    background: var(--clay);
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+
+  .checklist { list-style: none; padding: 0; margin: 0; }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 15px;
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .checklist input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--clay);
+    flex-shrink: 0;
+  }
+
+  .checklist label { cursor: pointer; }
+  .checklist input:checked + label { color: var(--ink-soft); text-decoration: line-through; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 620px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  .subhead {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--river);
+    margin: 18px 0 8px;
+  }
+
+  .subhead:first-child { margin-top: 0; }
+
+  .note {
+    background: var(--river-soft);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+  }
+
+  .note strong { color: var(--ink); }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .timeline li {
+    padding: 12px 0 12px 22px;
+    border-left: 2px solid var(--line);
+    position: relative;
+    font-size: 15px;
+  }
+
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 16px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--clay);
+  }
+
+  .timeline li strong { display: block; color: var(--ink); margin-bottom: 2px; }
+  .timeline li span { color: var(--ink-soft); font-size: 13.5px; }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px 0;
+    color: var(--ink-soft);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Family Camping Trip</div>
+  <h1>Windy Point, Ready to Roll</h1>
+  <div class="subtitle">Your family + your sister's family — 8 people, 2 dogs, one waterless campground</div>
+  <div class="trip-meta">
+    <div class="meta-chip"><strong>Windy Point Campground</strong> · Site 015, Nonelectric</div>
+    <div class="meta-chip"><strong>Jul 17–19, 2026</strong> · 2 nights</div>
+    <div class="meta-chip"><strong>Naches, WA</strong> · Tieton River</div>
+    <div class="meta-chip"><strong>Tent + Trailer</strong> · No water on site</div>
+  </div>
+</header>
+
+<div class="alert-box">
+  <div class="alert-title">⚠ Two things to confirm before you go</div>
+  <p><strong>Trailer length:</strong> your site allows trailers up to 12 ft — if your trailer runs closer to 13 ft, call the Naches Ranger District ahead of time to confirm site 015 can fit it.</p>
+  <p><strong>Fire restrictions:</strong> Stage 1 restrictions are in effect forest-wide (through Oct 15). Campfires are only allowed in the site's established metal fire ring — nowhere else. Bring a backup camp stove just in case restrictions tighten further before your trip.</p>
+</div>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="water">Water Plan</button>
+  <button class="tab-btn" data-tab="packing">Packing List</button>
+  <button class="tab-btn" data-tab="food">Food & Fire</button>
+  <button class="tab-btn" data-tab="sleep">Sleep & Setup</button>
+  <button class="tab-btn" data-tab="water-play">Kayaking & Swimming</button>
+  <button class="tab-btn" data-tab="parking">Parking</button>
+  <button class="tab-btn" data-tab="timeline">Before You Go</button>
+</nav>
+
+<div class="container">
+
+  <!-- WATER TAB -->
+  <div class="panel active" id="water">
+    <div class="card">
+      <h2>Water Plan</h2>
+      <div class="card-sub">No potable water at Windy Point this season — everything comes with you.</div>
+      <table class="water-table">
+        <tr><th>Use</th><th>Amount</th></tr>
+        <tr><td>Drinking + cooking (8 people, 2 days, extra for heat)</td><td>20 gal</td></tr>
+        <tr><td>Dogs (2 dogs, 2 days)</td><td>3 gal</td></tr>
+        <tr><td>Dishes, hygiene, handwashing</td><td>6 gal</td></tr>
+        <tr><td>Fire extinguishing (kept separate, untouched until needed)</td><td>4–5 gal</td></tr>
+        <tr><td>Total needed</td><td>~35–38 gal</td></tr>
+      </table>
+      <div class="water-total">Trailer tank covers 20 gal → bring 15–20 gal more in jugs</div>
+      <div class="note"><strong>Split the load:</strong> the trailer's 20-gal tank is best for dishes and handwashing since it's already plumbed. Pack 2–3 separate 7-gal jugs — designate one clearly for drinking/cooking only, and one that's reserved purely for dousing the fire.</div>
+    </div>
+
+    <div class="card">
+      <h2>Who Brings What</h2>
+      <div class="card-sub">Split the water and gear load across both families so no one's trailer or car is overloaded.</div>
+      <div class="family-split">
+        <div class="family-block us">
+          <h3>Your family</h3>
+          <ul>
+            <li>Trailer + built-in 20-gal tank</li>
+            <li>1 dedicated drinking-water jug (7 gal)</li>
+            <li>Fire-extinguishing water (5 gal), kept in the trailer's exterior storage, untouched until breaking camp</li>
+          </ul>
+        </div>
+        <div class="family-block sister">
+          <h3>Sister's family</h3>
+          <ul>
+            <li>2 additional 7-gal jugs (14 gal) for drinking/cooking backup + dish water</li>
+            <li>Cooler ice — does double duty for food safety and melts into backup water</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACKING TAB -->
+  <div class="panel" id="packing">
+    <div class="two-col">
+      <div class="card">
+        <h2>Shared Camp Gear</h2>
+        <div class="card-sub">One list to split between both families — assign items so nothing's doubled or missed.</div>
+        <ul class="checklist">
+          <li><input type="checkbox" id="p1"><label for="p1">Tent(s) + stakes + mallet</label></li>
+          <li><input type="checkbox" id="p2"><label for="p2">Sleeping bags/pads for tent sleepers</label></li>
+          <li><input type="checkbox" id="p3"><label for="p3">Backup camp stove + fuel (in case fires are restricted)</label></li>
+          <li><input type="checkbox" id="p4"><label for="p4">Lighter/matches + fire starter</label></li>
+          <li><input type="checkbox" id="p5"><label for="p5">Cooler(s) + extra ice</label></li>
+          <li><input type="checkbox" id="p6"><label for="p6">Wash bin + biodegradable soap</label></li>
+          <li><input type="checkbox" id="p7"><label for="p7">Trash bags (pack it all out — no services on site)</label></li>
+          <li><input type="checkbox" id="p8"><label for="p8">Bear-safe / wildlife-safe food storage (required by forest order)</label></li>
+          <li><input type="checkbox" id="p9"><label for="p9">First aid kit</label></li>
+          <li><input type="checkbox" id="p10"><label for="p10">Headlamps/flashlights + batteries</label></li>
+          <li><input type="checkbox" id="p11"><label for="p11">Camp chairs, picnic blanket</label></li>
+          <li><input type="checkbox" id="p12"><label for="p12">Sunscreen + bug spray</label></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Water-Saving Hygiene</h2>
+        <div class="card-sub">With no spigot on site, cut down what you'd normally use water for.</div>
+        <ul class="checklist">
+          <li><input type="checkbox" id="h1"><label for="h1">Baby wipes / body wipes (big water-saver for 5 kids)</label></li>
+          <li><input type="checkbox" id="h2"><label for="h2">Hand sanitizer, multiple bottles</label></li>
+          <li><input type="checkbox" id="h3"><label for="h3">Paper plates/bowls, disposable utensils (cuts dish water way down)</label></li>
+          <li><input type="checkbox" id="h4"><label for="h4">Extra napkins/paper towels</label></li>
+          <li><input type="checkbox" id="h5"><label for="h5">Dry shampoo (optional, for the adults)</label></li>
+        </ul>
+
+        <h2 style="margin-top:22px;">Kid Gear</h2>
+        <ul class="checklist">
+          <li><input type="checkbox" id="k1"><label for="k1">Water shoes for the river</label></li>
+          <li><input type="checkbox" id="k2"><label for="k2">Swimsuits + towels (Tieton River access)</label></li>
+          <li><input type="checkbox" id="k3"><label for="k3">Layers — hot days, cool nights</label></li>
+          <li><input type="checkbox" id="k4"><label for="k4">Extra socks/shoes for muddy river banks</label></li>
+          <li><input type="checkbox" id="k5"><label for="k5">Bikes/scooters if the campground roads allow</label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Dog Gear (2 dogs)</h2>
+      <div class="card-sub">Desert-like heat means extra care for the dogs too.</div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="d1"><label for="d1">Collapsible water bowls (2)</label></li>
+        <li><input type="checkbox" id="d2"><label for="d2">Dog food, pre-portioned per day</label></li>
+        <li><input type="checkbox" id="d3"><label for="d3">Leashes + waste bags</label></li>
+        <li><input type="checkbox" id="d4"><label for="d4">Shade/tie-out spot planned for mid-day heat</label></li>
+        <li><input type="checkbox" id="d5"><label for="d5">Dog bed or blanket for the trailer/tent</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOD/FIRE TAB -->
+  <div class="panel" id="food">
+    <div class="card">
+      <h2>Fire Rules — Stage 1 Restrictions in Effect</h2>
+      <div class="card-sub">Effective through Oct 15, 2026 across the whole Okanogan-Wenatchee National Forest.</div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="f1"><label for="f1">Fires only allowed in the site's established metal fire ring — nowhere else on the property</label></li>
+        <li><input type="checkbox" id="f2"><label for="f2">Bring a backup pressurized-fuel camp stove — always allowed, even if fires get further restricted</label></li>
+        <li><input type="checkbox" id="f3"><label for="f3">Keep 4–5 gal of water set aside, untouched, purely for dousing the fire</label></li>
+        <li><input type="checkbox" id="f4"><label for="f4">Drown, stir, and check cold before ever walking away — no water source nearby if it reignites</label></li>
+        <li><input type="checkbox" id="f5"><label for="f5">Check fire restriction status again a day or two before you leave (conditions can tighten fast in summer)</label></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Menu Plan</h2>
+      <div class="card-sub">Day-by-day, built around low dishes, low water, and easy make-ahead prep. Veggie options are just built into each meal rather than called out separately.</div>
+
+      <div class="subhead">Friday, Jul 17 — arrive ~2pm</div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="mn1"><label for="mn1">Dinner: Foil-packet fajitas — chicken packets + a veggie/black bean packet, warm tortillas, toppings bar (cheese, salsa, sour cream, lime). Kids build their own.</label></li>
+        <li><input type="checkbox" id="mn2"><label for="mn2">Dessert: S'mores</label></li>
+      </ul>
+
+      <div class="subhead">Saturday, Jul 18 — full day</div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="mn3"><label for="mn3">Breakfast: Overnight oats, pre-made in jars at home — just grab and eat, zero cooking or dishes. Toppings: berries, granola, nut butter.</label></li>
+        <li><input type="checkbox" id="mn4"><label for="mn4">Lunch: Build-your-own wraps — hummus, turkey, cheese, cucumber/pepper strips, tortillas. Chips + pre-cut fruit on the side.</label></li>
+        <li><input type="checkbox" id="mn5"><label for="mn5">Dinner: Hobo packets in the coals — sausage + potato + corn + pepper + onion packets, and a tofu or extra-bean version of the same mix</label></li>
+        <li><input type="checkbox" id="mn6"><label for="mn6">Dessert: Banana boats — split banana, stuff with chocolate chips + mini marshmallows, wrap in foil, warm in the coals</label></li>
+      </ul>
+
+      <div class="subhead">Sunday, Jul 19 — depart by noon</div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="mn7"><label for="mn7">Breakfast: Cold cereal + shelf-stable milk, yogurt pouches, fruit — quick and no cooking on a pack-up morning</label></li>
+      </ul>
+
+      <div class="subhead">Snacks (all weekend)</div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="mn8"><label for="mn8">Trail mix, string cheese, crackers, fruit snacks</label></li>
+        <li><input type="checkbox" id="mn9"><label for="mn9">Freeze a few juice boxes/water bottles ahead of time — doubles as ice packs and a cold drink later</label></li>
+      </ul>
+
+      <div class="note"><strong>Prep-ahead tip:</strong> marinate/portion meats and prep the oats and fajita veggies at home before you go — cuts down on both cooler space and camp dish time. Freezing a couple of proteins solid also helps keep the cooler cold longer.</div>
+      <div class="note"><strong>Wildlife-safe storage is required forest-wide right now</strong> — keep all food, coolers, and trash in a vehicle or hard-sided storage when not actively in use, day or night.</div>
+    </div>
+  </div>
+
+  <!-- SLEEP TAB -->
+  <div class="panel" id="sleep">
+    <div class="card">
+      <h2>Sleeping Arrangements</h2>
+      <div class="card-sub">With the rooftop tent, the trailer sleeps 4 — plenty of room to rotate cousins through it night to night.</div>
+      <ul class="timeline">
+        <li><strong>Trailer interior</strong><span>2 adults</span></li>
+        <li><strong>Rooftop tent</strong><span>2 more — great spot for a couple of the older cousins to take turns "camping up top"</span></li>
+        <li><strong>Ground tent(s)</strong><span>Everyone else — remaining adult(s) + remaining kids</span></li>
+        <li><strong>Dogs</strong><span>Wherever's cooler and calmer for each — trailer or tent, your call</span></li>
+      </ul>
+      <div class="note"><strong>Nightly rotation idea:</strong> since it's only 2 nights, let a different pair of cousins claim the rooftop tent each night — makes it feel like a special treat rather than a fixed assignment, and spreads the "cool factor" evenly across both families' kids.</div>
+      <div class="note">Worth deciding ahead of time who's in which tent so bedding/sleeping bags get packed to match — easier to sort at home than at 9pm in the dark.</div>
+    </div>
+  </div>
+
+  <!-- WATER PLAY TAB -->
+  <div class="panel" id="water-play">
+    <div class="card">
+      <h2>Right at Camp: Tieton River</h2>
+      <div class="card-sub">Good for wading and cooling off — not for serious swimming or kayaking in July.</div>
+      <p style="font-size:14.5px; color:var(--ink-soft); margin-top:0;">Windy Point sits right on the Tieton, and campers describe shallow shoreline areas near the sites where kids can safely wade and splash. But July isn't the river's real paddling season — the Tieton's famous whitewater comes from a scheduled dam release out of Rimrock Reservoir that happens every September (the "flip-flop"), so in July the flow is lower and more suited to wading than kayaking. The water also runs cold even in summer heat.</p>
+      <div class="note"><strong>Good for:</strong> wading, splashing, cooling off feet, casual play right outside your tent. <strong>Not ideal for:</strong> swimming laps or bringing kayaks — current and cold water make it more of a dip-your-toes spot with young kids around.</div>
+    </div>
+
+    <div class="card">
+      <h2>Best Bet: Rimrock Lake</h2>
+      <div class="card-sub">~20–25 min west on Highway 12 toward White Pass — calm water, sandy swim area, kayak rentals on site.</div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="w1"><label for="w1">Silver Beach Resort — designated swim area, boat launch, kayak & paddleboard rentals if you don't want to haul your own</label></li>
+        <li><input type="checkbox" id="w2"><label for="w2">Rimrock Lake Resort — has a marked "safe swim area for young kids" per regular visitors</label></li>
+        <li><input type="checkbox" id="w3"><label for="w3">Motorized boats are allowed on this lake, so stick closer to shore/swim areas with the little ones</label></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Calmest Option: Clear Lake</h2>
+      <div class="card-sub">Just past Rimrock, same direction — non-motorized only, small and calm.</div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="w4"><label for="w4">No motorized boats at all — much calmer and quieter, great for a first kayak trip with kids</label></li>
+        <li><input type="checkbox" id="w5"><label for="w5">Shallow cove near the boat launch — good for beginner paddleboarders/kayakers</label></li>
+        <li><input type="checkbox" id="w6"><label for="w6">Small dock, picnic area, restrooms on the south shore</label></li>
+        <li><input type="checkbox" id="w7"><label for="w7">Nature trail around the lake if anyone wants a break from the water</label></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Water Play Packing</h2>
+      <ul class="checklist">
+        <li><input type="checkbox" id="w8"><label for="w8">Life jackets for every kid, sized correctly (rentals rarely stock small kid sizes)</label></li>
+        <li><input type="checkbox" id="w9"><label for="w9">Kayaks/paddleboards if you're bringing your own, plus roof rack straps</label></li>
+        <li><input type="checkbox" id="w10"><label for="w10">Water shoes — both riverbed and lake shorelines are rocky</label></li>
+        <li><input type="checkbox" id="w11"><label for="w11">Wetsuit or rash guard — even lake water runs cool at this elevation</label></li>
+        <li><input type="checkbox" id="w12"><label for="w12">Dry bag for phones/keys if kayaking</label></li>
+      </ul>
+      <div class="note">If renting kayaks at Silver Beach, worth calling ahead in July to confirm availability for a group your size — popular spot in peak season.</div>
+    </div>
+  </div>
+
+  <!-- PARKING TAB -->
+  <div class="panel" id="parking">
+    <div class="card">
+      <h2>Second Vehicle — No Guaranteed Lot</h2>
+      <div class="card-sub">Windy Point is a small 15-site campground. There's no confirmed overflow lot — extra vehicles are space-permitting within your own site.</div>
+      <ul class="checklist">
+        <li><input type="checkbox" id="pk1"><label for="pk1">Reservation covers 1 vehicle + 1 legally towed trailer only</label></li>
+        <li><input type="checkbox" id="pk2"><label for="pk2">A 2nd vehicle is allowed on-site for an extra fee (~half the site rate), <strong>cash or check only</strong>, and only if it physically fits your site's parking spur</label></li>
+        <li><input type="checkbox" id="pk3"><label for="pk3">No dedicated overflow lot mentioned anywhere in official campground info</label></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Your Options, Ranked</h2>
+      <ul class="timeline">
+        <li><strong>1. Call ahead and ask directly</strong><span>Bundle this with the trailer-length call to the Naches Ranger District — they'll know the real on-the-ground situation better than any review site</span></li>
+        <li><strong>2. Consolidate to one vehicle per family</strong><span>With 8 people + 2 dogs + gear already tight, carpooling avoids the problem entirely — one car does the full trip, the other stays home, and you shuttle into Naches (~12 mi) if needed with the car that's there</span></li>
+        <li><strong>3. Ask about Hause Creek Campground nearby</strong><span>Another Forest Service campground just up the same road on the Tieton River — worth asking the ranger district if day parking there is possible, but treat this as a backup, not a confirmed plan</span></li>
+      </ul>
+      <div class="note"><strong>Avoid:</strong> parking on the Highway 12 shoulder. It's a fast, narrow mountain highway — not a safe long-term spot with 5 kids moving between car and camp.</div>
+    </div>
+  </div>
+
+  <!-- TIMELINE TAB -->
+  <div class="panel" id="timeline">
+    <div class="card">
+      <h2>Before You Leave</h2>
+      <ul class="timeline">
+        <li><strong>Call Naches Ranger District to confirm trailer fits site 015 — and ask about second vehicle parking</strong><span>Site is rated for a 12 ft trailer — confirm before you're stuck backing out. Same call, ask where a second car could go if it doesn't fit the site</span></li>
+        <li><strong>Fill the trailer's fresh water tank</strong><span>Do this the day before or morning of departure, not days ahead</span></li>
+        <li><strong>Fill and label water jugs</strong><span>Mark which jug is drinking water and which is fire water so it's obvious at camp</span></li>
+        <li><strong>Recheck fire restriction status</strong><span>Conditions can escalate quickly in July — check fs.usda.gov the day before you go</span></li>
+        <li><strong>Coordinate gear split with your sister</strong><span>Confirm who's bringing which cooler, jugs, and shared items so nothing's doubled or missing</span></li>
+        <li><strong>Pack the car/trailer with fire water and drinking water separated and clearly marked</strong><span>Avoids mix-ups once you're at camp</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>Windy Point Campground · Reservation #0800312746-1 · Jul 17–19, 2026</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
